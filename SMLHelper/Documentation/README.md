@@ -8,3 +8,9 @@ docfx SMLHelper/docfx.json --serve
 ```
 
 The website will then be launched on http://localhost:8080 and you can preview it.
+
+## Contributing
+Simply make a PR to the `docs` branch with your changes.
+Make sure to add your documentation files (markdown) to the toc.yml appropriate for the type of document you're trying to add as well.  
+
+**Please refrain from pushing C# changes to the `docs` branch.**

@@ -54,7 +54,7 @@ If you're setting the equipment type for a custom prefab, we recommend using the
 ```csharp
 var customPrefab = new CustomPrefab("CustomItem", ".", ".");
 customPrefab.SetEquipment(EquipmentType.Head);
-// rest of the custom prefab configuration is emitted for brevity.
+// rest of the custom prefab configuration is omitted for brevity.
 ```
 
 > [!WARNING] It is dangerous to edit equipment types for items that already have one, because they can break.  

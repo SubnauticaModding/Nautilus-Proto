@@ -31,6 +31,11 @@ jobs:
       uses: nikeee/docfx-action@v1.0.0
       with:
           args: SMLHelper/docfx.json
+          
+    - name: Build documentation x2
+      uses: nikeee/docfx-action@v1.0.0
+      with:
+          args: SMLHelper/docfx.json
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
