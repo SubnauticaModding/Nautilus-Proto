@@ -23,6 +23,9 @@ jobs:
       
     - name: Nuget Restore
       run: nuget restore SMLHelper.sln
+      
+    - name: Build Project
+      run: dotnet build SMLHelper.sln -c SN.STABLE
     
     - run: dotnet tool update -g docfx
     - run: docfx SMLHelper/docfx.json
