@@ -1,4 +1,6 @@
-﻿namespace SMLHelper
+﻿using System.ComponentModel;
+
+namespace SMLHelper
 {
     using System;
     using BepInEx;
@@ -11,6 +13,7 @@
     /// <summary>
     /// WARNING: This class is for use only by Bepinex.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class Initializer : BaseUnityPlugin
     {

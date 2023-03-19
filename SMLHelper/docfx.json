@@ -1,0 +1,68 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "*.csproj"
+          ],
+		  "exclude": [
+                "**/obj/**",
+                "**/bin/**",
+                "_site/**"
+            ]
+        }
+      ],
+	  "shouldSkipMarkup": true,
+      "dest": "Documentation/api",
+      "filter": "filter.yml",
+      "properties": {
+		"Configuration": "SN.STABLE"
+		}
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.yml",
+          "**/*.md"
+        ],
+		"src": "Documentation"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "logo.svg",
+          "favicon.ico"
+        ]
+      },
+      {
+        "files": [
+          "Documentation/images/**/*"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "Documentation/api/**.yml"
+        ],
+        "exclude": [
+          "obj/**",
+          "_site/**"
+        ]
+      }
+    ],
+    "globalMetadata": {
+      "_appFaviconPath": "Documentation/images/smoll.ico",
+      "_enableSearch": true
+    },
+    "dest": "_site",
+    "template": [
+       "default",
+       "DocFX/darkfx"
+    ]
+  }
+}
