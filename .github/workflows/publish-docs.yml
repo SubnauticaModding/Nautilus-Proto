@@ -31,10 +31,10 @@ jobs:
       run: dotnet tool update -g docfx
           
     - name: Build documentation
-      run: docfx build SMLHelper/docfx.json
+      run: docfx SMLHelper/docfx.json
       
     - name: Build documentation x2
-      run: docfx build SMLHelper/docfx.json
+      run: docfx SMLHelper/docfx.json
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
