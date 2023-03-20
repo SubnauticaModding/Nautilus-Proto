@@ -27,15 +27,14 @@ jobs:
     - name: Build Project
       run: dotnet build SMLHelper.sln -c SN.STABLE
     
-    - name: Build documentation
-      uses: nikeee/docfx-action@v1.0.0
-      with:
-          args: SMLHelper/docfx.json
+    - name: Install DocFX
+      run: dotnet tool update -g docfx
           
+    - name: Build documentation
+      run: docfx build SMLHelper/docfx.json
+      
     - name: Build documentation x2
-      uses: nikeee/docfx-action@v1.0.0
-      with:
-          args: SMLHelper/docfx.json
+      run: docfx build SMLHelper/docfx.json
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
