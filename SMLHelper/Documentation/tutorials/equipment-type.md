@@ -57,6 +57,7 @@ customPrefab.SetEquipment(EquipmentType.Head);
 // rest of the custom prefab configuration is omitted for brevity.
 ```
 
-> [!WARNING] It is dangerous to edit equipment types for items that already have one, because they can break.  
+> [!WARNING] 
+> It is dangerous to edit equipment types for items that already have one, because they can break.  
 > For instance, modifying the equipment type for the Radiation Helmet will disable the player from wearing it.
 

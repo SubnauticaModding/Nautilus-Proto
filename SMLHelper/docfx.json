@@ -47,7 +47,7 @@
     "overwrite": [
       {
         "files": [
-          "Documentation/api/**.yml"
+          "apidoc/**.md"
         ],
         "exclude": [
           "obj/**",
