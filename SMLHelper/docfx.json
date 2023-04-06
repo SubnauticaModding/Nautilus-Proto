@@ -61,7 +61,8 @@
     },
     "dest": "_site",
     "template": [
-       "default"
+       "default",
+      "DocFX/langdiff"
     ]
   }
 }
