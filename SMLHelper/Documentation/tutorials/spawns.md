@@ -1,4 +1,6 @@
-﻿Most of the time in Subnautica, the game uses two different ways to spawn objects; static spawns that always have a fixed position in the world to spawn in,
+﻿# Adding Spawns
+
+Most of the time in Subnautica, the game uses two different ways to spawn objects; static spawns that always have a fixed position in the world to spawn in,
 and loot distribution which is biome-based and sudo-random.  
 
 SMLHelper offers modders to add spawns to either systems. You can add spawns for your own custom item, you can also edit vanilla spawns,

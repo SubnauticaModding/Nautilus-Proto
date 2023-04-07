@@ -1,3 +1,5 @@
+# Updating to SML 3.0
+
 In this article, we will be talking about the breaking changes for SML 2.0 that were implemented in SML 3.0.  
 
 ## Namespace
@@ -74,7 +76,7 @@ PDAEncyclopedia.EntryData entry = new PDAEncyclopedia.EntryData()
 </pre>
 
 ## Enum Handlers
-In SML 3.0, enum handling will be made generic. Instead of working with individual handlers associated with the enum type (E.G: For `TechType` we had `TechTypeHandler`),
+Beginning with SML 3.0, enum handling will be made generic. Instead of working with individual handlers associated with the enum type (E.G: For `TechType` we had `TechTypeHandler`),
 Now you can add a new enum value to any enum type by using `EnumHandler.AddEntry<TEnum>(string enumName)`.  
 
 This means the following handlers are removed:
@@ -181,22 +183,22 @@ The following table represents all the previous asset classes and what they have
 
 
 ### Custom Prefabs
-`CustomPrefab` is a class that takes care of registering gadgets, and also the game object into the game.  
+`CustomPrefab` is a class that takes care of registering gadgets and also the game object into the game.  
 This class is essentially equivalent to the previous `ModPrefab` class. It is what you will use to actually make a custom prefab.  
 
 ### Gadgets
-To put it simply, Gadgets are classes that take certain data, and register them to the game for our custom prefab item.  
+To put it simply, Gadgets are classes that take certain data and register them to the game for our custom prefab item.  
 They are pretty much equivalent to the different asset classes and their properties we had before.  
-Gadgets will be our primary way to interact with game systems, and add functionality to a tech type and/or class ID.  
+Gadgets will be our primary way of interacting with game systems and to add functionality to a tech type and/or class ID.  
 
 > [!NOTE]
 > Gadgets only interact with tech types and/or class IDs. They don't have any business with a prefab's game object.
 
 ### Prefab Templates
-Previously on SML 2.0, asset classes optionally also provided game objects (E.G: `CustomFabricator`). To allow for diversity in the game object template you choose from,
+Previously on SML 2.0, asset classes optionally also provided game objects (E.G: `CustomFabricator`). To allow for diversity in the game object template you choose from
 and also to make it easier to manage such functionality and modularize game objects, we have moved game object templates to their own system: Prefab templates.  
 
-Prefab templates will be our main way to provide a base game object for custom prefabs. There are a couple of options you can choose from that suit your needs, however, it is not enforced to choose one,
+Prefab templates will be our main way of providing a base game object for custom prefabs. There are a couple of options you can choose from that suit your needs, however, it is not enforced to choose one;
 you can still build up a game object from scratch.  
 
 A couple of prefab templates that will be available in SML 3.0 are the following:
@@ -306,7 +308,7 @@ FMOD is the sound engine Subnautica uses. It is more advanced and flexible compa
 Since we discovered the best practices and better ways to deal with custom sounds, we have deleted a bunch of previously-obsolete methods from
 `CustomSoundHandler` and `AudioUtils` classes, as well as the `SoundChannel` enumeration in SML 3.0.  
 
-Beginning with SML 3.0, all custom sounds will require a bus instead of a SoundChannel to determine the effects (E.G: reverb, muffling, low-pass, etc..) and the volume slider that should affect a custom sound.  
+Beginning with SML 3.0, all custom sounds will require a bus instead of a SoundChannel to determine the effects (E.G: reverb, muffling, low-pass, etc..) and the volume slider.  
 Additionally, the `PlaySound` signature was also modified and renamed to `TryPlaySound`.
 
 <pre>

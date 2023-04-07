@@ -1,4 +1,6 @@
-﻿SMLHelper provides a simple API for allowing you to define custom console commands for your mod to respond to when the user types them into the in-game dev console, with simple parameter type checking to enable user- and developer-friendly error reporting, both on-screen and in the log.
+﻿# Adding Custom Console Commands
+
+SMLHelper provides a simple API for allowing you to define custom console commands for your mod to respond to when the user types them into the in-game dev console, with simple parameter type checking to enable user- and developer-friendly error reporting, both on-screen and in the log.
 
 ![An example error message](../images/tutorials/command-results.png)
 
