@@ -1,7 +1,8 @@
 ![Banner](images/banner.webp)
 
-# SMLHelper Library
+# SMLib: Subnautica Modding Library
 
-Lorem ipsum dolor sit amet. Non inventore quia est vitae assumenda a dolorum ipsum est modi sunt vel architecto modi ad sequi eaque. Non necessitatibus quaerat et voluptatem facere aut cupiditate officiis et minus fugit cum aliquid minus. Ex voluptatem laboriosam aut magnam corporis ad quasi dolorem. Eos nulla consequatur qui labore laborum id alias eveniet quo eius aperiam.
+SMLib is a modding library that aims on enhancing developer productivity by offering common helper utilities as easy to use and robust as possible.  
 
-Non itaque nesciunt est quam itaque aut rerum quia. Sit adipisci aperiam ut cupiditate necessitatibus sed omnis quod qui libero dolorem aut explicabo culpa et voluptas aspernatur. Hic dolor fugit est voluptatem magnam hic consequatur veritatis. Non provident tempora a consequatur unde et voluptatem dicta et rerum alias.
+SMLib offers systems such as adding/editing items, icons, spawns, sounds and so much more! 
+
