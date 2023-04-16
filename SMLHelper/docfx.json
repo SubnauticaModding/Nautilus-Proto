@@ -36,7 +36,8 @@
         "files": [
           "logo.svg",
           "favicon.ico"
-        ]
+        ],
+        "src": "DocFX"
       },
       {
         "files": [
