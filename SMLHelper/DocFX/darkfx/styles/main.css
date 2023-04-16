@@ -22,6 +22,11 @@ body.light-theme {
   --color-background-table-alt: #f9f9f9;
 }
 
+@font-face {
+  font-family: Days One;
+  src: url("days_one.ttf");
+}
+
 body {
   color: var(--color-foreground);
   line-height: 1.5;
@@ -125,7 +130,7 @@ article h4 {
 }
 
 .light-theme .navbar-brand svg {
-  filter: brightness(20%);
+  filter: brightness(90%);
 }
 
 .toc .level1>li {
