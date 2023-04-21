@@ -24,8 +24,8 @@ Nautilus is a modding library that aims on enhancing developer productivity by o
    
 2. Download Nautilus from either [Nexus Mods](https://www.youtube.com/watch?v=dQw4w9WgXcQ), [Submodica](https://www.youtube.com/watch?v=dQw4w9WgXcQ) or [GitHub Releases](https://www.youtube.com/watch?v=dQw4w9WgXcQ).  
    Drag and drop the `plugins` folder in the zip into your `BepInEx` folder.
-   1. Drop the `plugins` folder here -> `PathToSubnautica\BepInEx\`
-   2. It should end up like this -> `PathToSubnautica\BepInEx\plugins\Nautilus\`
+   1. Drop the `plugins` folder here: `PathToSubnautica\BepInEx\`
+   2. It should end up like this: `PathToSubnautica\BepInEx\plugins\Nautilus\`
 
 If you have any trouble installing the mod, please join our [Discord server](https://discord.gg/UpWuWwq), and <u>explain your issue</u> via one of the help and support channels.
 
