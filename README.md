@@ -6,16 +6,15 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/SubnauticaModding/Nautilus?style=flat-square)
 ![License](https://img.shields.io/github/license/SubnauticaModding/Nautilus?style=flat-square)
 
-## About
-Nautilus is a modding library that aims to enhance developer productivity by offering common helper utilities as easy to use and robust as possible. 
-Noteable systems which Nautilis offers inlcude: Adding/editing items, implementing custom sprites & textures, playing custom audio, a 'Mods' tab in the games 'Options' which easily allows you to have in-game configuration for your mods. Though most importantly, Nautilis is used to bring mods together with a common platform/library, and in general making modders lives easier.
- 
-
 ## Contents
 - [🌐 About](#about)
 - [⬇️ Installation](#installation)
 - [📚 Resources / links](#links)
 - [🤝 Contributing](#contributing)
+
+## About
+Nautilus is a modding library that aims to enhance developer productivity by offering common helper utilities as easy to use and robust as possible. 
+Noteable systems which Nautilis offers inlcude: Adding/editing items, implementing custom sprites & textures, playing custom audio, a 'Mods' tab in the games 'Options' which easily allows you to have in-game configuration for your mods. Though most importantly, Nautilis is used to bring mods together with a common platform/library, and in general making modders lives easier.
 
 ## Installation
 1. Download the [Subnautica BepInEx Pack](https://www.nexusmods.com/subnautica/mods/1108).  
