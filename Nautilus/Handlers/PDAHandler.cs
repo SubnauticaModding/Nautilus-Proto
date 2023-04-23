@@ -74,7 +74,8 @@ public static class PDAHandler
             isFragment = isFragment,
             totalFragments = totalFragmentsRequired,
             scanTime = scanTime,
-            destroyAfterScan = destroyAfterScan
+            destroyAfterScan = destroyAfterScan,
+            encyclopedia = encyclopediaKey
         });
     }
 
