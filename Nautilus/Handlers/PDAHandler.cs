@@ -1,4 +1,4 @@
-﻿using BepInEx.Logging;
+using BepInEx.Logging;
 using Nautilus.Patchers;
 using Nautilus.Utility;
 using UnityEngine;
@@ -109,5 +109,46 @@ public static class PDAHandler
         }
 
         PDAEncyclopediaPatcher.CustomEntryData[entry.key] = entry;
+    }
+
+    /// <summary>
+    /// Registers a single encylopedia entry into the game.
+    /// </summary>
+    /// <param name="key">Key (internal ID) of this PDA entry, primarily used for the language system.</param>
+    /// <param name="path"><para>Path to this entry in the databank.</para>
+    /// <para>To find examples of this string, open "...Subnautica\Subnautica_Data\StreamingAssets\SNUnmanagedData\LanguageFiles\English.json" and search for "EncyPath".</para>
+    /// </param>
+    /// <param name="title">Displayed title of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'Ency_{<paramref name="key"/>}'.</param>
+    /// <param name="desc">Displayed description of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'EncyDesc_{<paramref name="key"/>}'.</param>
+    /// <param name="image">Databank entry image. Can be null.</param>
+    /// <param name="popupImage">Small popup image in the notification. Can be null.</param>
+    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage)
+    {
+        if (string.IsNullOrEmpty(path))
+        {
+            InternalLogger.Error($"Attempting to add encyclopedia entry with null path for ClassId '{key}'!");
+            return;
+        }
+
+        string[] encyNodes;
+        if (string.IsNullOrEmpty(path))
+            encyNodes = new string[0];
+        else
+            encyNodes = path.Split('/');
+
+
+        var encyEntryData = new PDAEncyclopedia.EntryData()
+        {
+            key = key,
+            nodes = encyNodes,
+            path = path,
+            image = image,
+            popup = popupImage
+        };
+
+        if (!string.IsNullOrEmpty(title)) LanguageHandler.SetLanguageLine("Ency_" + key, title);
+        if (!string.IsNullOrEmpty(desc)) LanguageHandler.SetLanguageLine("EncyDesc_" + key, desc);
+
+        AddEncyclopediaEntry(encyEntryData);
     }
 }
