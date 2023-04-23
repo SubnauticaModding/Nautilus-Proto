@@ -122,9 +122,9 @@ public static class PDAHandler
     /// <param name="desc">Displayed description of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'EncyDesc_{<paramref name="key"/>}'.</param>
     /// <param name="image">Databank entry image. Can be null.</param>
     /// <param name="popupImage">Small popup image in the notification. Can be null.</param>
-    /// <param name="sound">Sound on unlock.</param>
-    /// <param name="audio">Audio player that will be displayed inside this PDA entry, typically used for voice logs.</param>
-    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage, FMODAsset sound, FMODAsset audio = null)
+    /// <param name="unlockSound">Sound on unlock. Typical values are <see cref="UnlockBasic"/> and <see cref="UnlockImportant"/>. If unassigned, will have a default value of <see cref="UnlockBasic"/>.</param>
+    /// <param name="voiceLog">Audio player that will be displayed inside this PDA entry, typically used for voice logs. Can be null.</param>
+    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage, FMODAsset unlockSound = null, FMODAsset voiceLog = null)
     {
         if (string.IsNullOrEmpty(path))
         {
@@ -138,6 +138,10 @@ public static class PDAHandler
         else
             encyNodes = path.Split('/');
 
+        if (unlockSound == null)
+        {
+            unlockSound = UnlockBasic;
+        }
 
         var encyEntryData = new PDAEncyclopedia.EntryData()
         {
@@ -146,7 +150,8 @@ public static class PDAHandler
             path = path,
             image = image,
             popup = popupImage,
-            audio = audio
+            sound = unlockSound,
+            audio = voiceLog
         };
 
         if (!string.IsNullOrEmpty(title)) LanguageHandler.SetLanguageLine("Ency_" + key, title);
@@ -154,4 +159,21 @@ public static class PDAHandler
 
         AddEncyclopediaEntry(encyEntryData);
     }
+
+    /// <summary>
+    /// Sound asset used for unlocking most PDA entries, which is a short but pleasant sound. Path is '<c>event:/tools/scanner/new_encyclopediea</c>'.
+    /// </summary>
+    public static FMODAsset UnlockBasic { get; } = AudioUtils.GetFmodAsset("event:/tools/scanner/new_encyclopediea");
+
+#if SUBNAUTICA
+    /// <summary>
+    /// Sound asset for unlocking important PDA entries, where PDA says "Integrating new PDA data." Path is '<c>event:/loot/new_PDA_data</c>'.
+    /// </summary>
+    public static FMODAsset UnlockImportant { get; } = AudioUtils.GetFmodAsset("event:/loot/new_PDA_data");
+#else
+    /// <summary>
+    /// Sound asset for unlocking more important (generally story related) PDA entries.
+    /// </summary>
+    public static FMODAsset UnlockImportant { get; } = AudioUtils.GetFmodAsset("event:/bz/ui/story_unlocked");
+#endif
 }
