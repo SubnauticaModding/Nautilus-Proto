@@ -165,15 +165,13 @@ public static class PDAHandler
     /// </summary>
     public static FMODAsset UnlockBasic { get; } = AudioUtils.GetFmodAsset("event:/tools/scanner/new_encyclopediea");
 
-#if SUBNAUTICA
     /// <summary>
-    /// Sound asset for unlocking important PDA entries, where PDA says "Integrating new PDA data." Path is '<c>event:/loot/new_PDA_data</c>'.
+    /// <para>Subnautica:<br/>Sound asset for unlocking important PDA entries, where PDA says "Integrating new PDA data." Path is '<c>event:/loot/new_PDA_data</c>'.</para>
+    /// <para>Below Zero:<br/>Sound asset for unlocking more important (generally story related) PDA entries. Path is '<c>event:/bz/ui/story_unlocked</c>'.</para>
     /// </summary>
+#if SUBNAUTICA
     public static FMODAsset UnlockImportant { get; } = AudioUtils.GetFmodAsset("event:/loot/new_PDA_data");
 #else
-    /// <summary>
-    /// Sound asset for unlocking more important (generally story related) PDA entries.
-    /// </summary>
     public static FMODAsset UnlockImportant { get; } = AudioUtils.GetFmodAsset("event:/bz/ui/story_unlocked");
 #endif
 }
