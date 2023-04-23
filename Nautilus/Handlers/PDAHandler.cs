@@ -122,7 +122,9 @@ public static class PDAHandler
     /// <param name="desc">Displayed description of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'EncyDesc_{<paramref name="key"/>}'.</param>
     /// <param name="image">Databank entry image. Can be null.</param>
     /// <param name="popupImage">Small popup image in the notification. Can be null.</param>
-    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage)
+    /// <param name="sound">Sound on unlock.</param>
+    /// <param name="audio">Audio player that will be displayed inside this PDA entry, typically used for voice logs.</param>
+    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage, FMODAsset sound, FMODAsset audio = null)
     {
         if (string.IsNullOrEmpty(path))
         {
@@ -143,7 +145,8 @@ public static class PDAHandler
             nodes = encyNodes,
             path = path,
             image = image,
-            popup = popupImage
+            popup = popupImage,
+            audio = audio
         };
 
         if (!string.IsNullOrEmpty(title)) LanguageHandler.SetLanguageLine("Ency_" + key, title);
