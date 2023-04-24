@@ -14,7 +14,15 @@
 
 ## About
 
-Formerly known as [SMLHelper](https://github.com/SubnauticaModding/SMLHelper), Nautilus is a modding library that aims to enhance developer productivity by offering common helper utilities as easy to use and robust as possible. Noteable systems which Nautilis offers inlcude: Adding/editing items, implementing custom sprites & textures, playing custom audio, a 'Mods' tab in the games 'Options' which easily allows you to have in-game configuration for your mods. Though most importantly, Nautilis is used to bring mods together with a common platform/library, and in general making modders lives easier. More on what Nautilus can do is available in the [documentation](https://subnauticamodding.github.io/Nautilus).
+Nautilus is a modding library that aims to enhance developer productivity by offering common helper utilities as easy to use and robust as possible.
+Notable systems which Nautilus offers include but not limited to: Adding/editing items, implementing custom sprites & textures, custom audio, Subnautica-style configuration menu, and so much more!  
+For more information on Nautilus capabilities, please refer to our [documentation](https://subnauticamodding.github.io/Nautilus).  
+
+This project was derived from [SMLHelper](https://github.com/SubnauticaModding/SMLHelper) with an improved codebase and maintainability. Nautilus offers all the features SML used to offer in a more robust implementation.
+Additionally, Nautilus took another route of managing handlers to fix many bugs and timing issues that were persistent in SML.  
+We hope to keep improving the modding experience in Subnautica to allow developers to create mods more easily and eliminate the implementation concerns in the mod-making process.
+
+### ⚠️ Nautilus is only supported on the latest version of Subnautica. If you're playing on the Legacy branch of Steam, use [SMLHelper](https://github.com/SubnauticaModding/SMLHelper) instead.
 
 ## Installation
 1. Download the [Subnautica BepInEx Pack](https://www.nexusmods.com/subnautica/mods/1108).  
@@ -23,12 +31,12 @@ Formerly known as [SMLHelper](https://github.com/SubnauticaModding/SMLHelper), N
    - Epic Games - `C:\Program Files\Epic Games\Subnautica` (default path)
    - Xbox  PC - `C:\XboxGames\Subnautica\Content` (default path)
    
-2. Download Nautilus from either [Nexus Mods](https://www.youtube.com/watch?v=dQw4w9WgXcQ), [Submodica](https://www.youtube.com/watch?v=dQw4w9WgXcQ) or GitHub Releases.  
+2. Download Nautilus from one of [Nexus Mods](https://www.youtube.com/watch?v=dQw4w9WgXcQ), [Submodica](https://www.youtube.com/watch?v=dQw4w9WgXcQ) or GitHub Releases.  
    Drag and drop the `plugins` folder in the zip into your `BepInEx` folder.
    1. Drop the `plugins` folder here: `PathToSubnautica\BepInEx\`
    2. It should end up like this: `PathToSubnautica\BepInEx\plugins\Nautilus\`
 
-If you have any trouble installing the mod, please join our [Discord server](https://discord.gg/UpWuWwq), and explain your issue via one of the help and support channels.
+If you have any trouble installing the mod, please join our [Discord server](https://discord.gg/UpWuWwq), and explain your issue in one of the help and support channels.
 
 ## Links
 * Developer resources:
