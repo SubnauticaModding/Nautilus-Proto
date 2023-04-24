@@ -2,9 +2,9 @@
 
 ![banner](https://user-images.githubusercontent.com/71298690/233505405-e89fbc70-31c9-45a2-bb31-64e1f498d4a7.png)
 
-![Lines of code](https://img.shields.io/tokei/lines/github/SubnauticaModding/Nautilus?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/SubnauticaModding/Nautilus?style=flat-square)
-![License](https://img.shields.io/github/license/SubnauticaModding/Nautilus?style=flat-square)
+[![Discord](https://img.shields.io/discord/324207629784186882?logo=discord&logoColor=white)](https://discord.gg/UpWuWwq)
+[![GitHub contributors](https://img.shields.io/github/contributors/SubnauticaModding/Nautilus?style=flat-square)](https://github.com/SubnauticaModding/Nautilus/graphs/contributors)
+[![License](https://img.shields.io/github/license/SubnauticaModding/Nautilus?style=flat-square)](https://github.com/SubnauticaModding/Nautilus/blob/master/LICENSE.md)
 
 ## Contents
 - [🌐 About](#about)
