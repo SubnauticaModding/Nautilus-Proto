@@ -45,9 +45,9 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="techType">The TechType that causes this goal to trigger, when picked up, equipped or crafted through the Mobile Vehicle Bay.</param>
     /// <returns>The registered <see cref="ItemGoal"/>.</returns>
-    public static ItemGoal RegisterItemGoal(string key, StoryGoalType goalType, float delay, TechType techType)
+    public static ItemGoal RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
     {
-        var goal = new ItemGoal() { key = key, goalType = goalType.GetActualValue(), delay = delay, techType = techType };
+        var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
     }
 
     /// <summary>
@@ -59,9 +59,9 @@ public static class StoryGoalHandler
     /// <param name="biomeName">The biome that must be entered to trigger this goal.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay in the given biome.</param>
     /// <returns>The registered <see cref="BiomeGoal"/>.</returns>
-    public static BiomeGoal RegisterBiomeGoal(string key, StoryGoalType goalType, float delay, string biomeName, float minStayDuration)
+    public static BiomeGoal RegisterBiomeGoal(string key, Story.GoalType goalType, float delay, string biomeName, float minStayDuration)
     {
-        var goal = new BiomeGoal() { key = key, goalType = goalType.GetActualValue(), delay = delay, biome = biomeName, minStayDuration = minStayDuration };
+        var goal = new BiomeGoal() { key = key, goalType = goalType, delay = delay, biome = biomeName, minStayDuration = minStayDuration };
     }
 
     /// <summary>
@@ -74,9 +74,9 @@ public static class StoryGoalHandler
     /// <param name="range">The radius of the sphere that must be occupied.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay for this goal to be completed.</param>
     /// <returns>The registered <see cref="LocationGoal"/>.</returns>
-    public static LocationGoal RegisterLocationGoal(string key, StoryGoalType goalType, float delay, Vector3 position, float range, float minStayDuration)
+    public static LocationGoal RegisterLocationGoal(string key, Story.GoalType goalType, float delay, Vector3 position, float range, float minStayDuration)
     {
-        var goal = new LocationGoal() { key = key, goalType = goalType.GetActualValue(), delay = delay, position = position, range = range, minStayDuration = minStayDuration };
+        var goal = new LocationGoal() { key = key, goalType = goalType, delay = delay, position = position, range = range, minStayDuration = minStayDuration };
     }
 
     /// <summary>
@@ -87,9 +87,9 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="requiredGoals">The list of all goals that must be completed before this goal is marked as complete.</param>
     /// <returns>The registered <see cref="CompoundGoal"/>.</returns>
-    public static CompoundGoal RegisterCompoundGoal(string key, StoryGoalType goalType, float delay, params string[] requiredGoals)
+    public static CompoundGoal RegisterCompoundGoal(string key, Story.GoalType goalType, float delay, params string[] requiredGoals)
     {
-        var goal = new CompoundGoal() { key = key, goalType = goalType.GetActualValue(), delay = delay, preconditions = requiredGoals };
+        var goal = new CompoundGoal() { key = key, goalType = goalType, delay = delay, preconditions = requiredGoals };
     }
 
     /// <summary>
@@ -118,32 +118,5 @@ public static class StoryGoalHandler
     {
 
     }
-
-    private static Story.GoalType GetActualValue(this StoryGoalType type)
-    {
-        return (Story.GoalType)type;
-    }
-}
-/// <summary>
-/// Determines the primary effect of a StoryGoal's completion. This is a documented wrapper for the original <see cref="Story.GoalType"/> enum, for use in the <see cref="StoryGoalHandler"/>.
-/// </summary>
-public enum StoryGoalType
-{
-    /// <summary>
-    /// Adds a PDA Log message on completion using the StoryGoal's key. Also see <see cref="PDAHandler.AddLogEntry"/> to create a PDA log entry.
-    /// </summary>
-    PDA,
-    /// <summary>
-    /// On completion, StoryGoals of this type will add a pending radio message using the StoryGoal's key. Also see <see cref="PDAHandler.AddLogEntry"/> to create a Radio signal.
-    /// </summary>
-    Radio,
-    /// <summary>
-    /// Adds a Databank entry on completion using the StoryGoal's key. Also see <see cref="PDAHandler.AddCustomScannerEntry(PDAScanner.EntryData)"/> or its overloads to create an encyclopedia entry.
-    /// </summary>
-    Encyclopedia,
-    /// <summary>
-    /// Generic GoalType with no default effects. Primarily used for tracking story progress. Also can be used in more advanced systems such as the <see cref="StoryGoalCustomEventHandler"/>, <see cref="OnGoalUnlockTracker"/> and <see cref="CompoundGoalTracker"/>.
-    /// </summary>
-    Story
 }
 #endif
