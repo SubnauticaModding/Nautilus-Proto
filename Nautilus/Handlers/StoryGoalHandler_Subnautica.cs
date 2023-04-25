@@ -1,4 +1,5 @@
 using System;
+using Nautilus.Patchers;
 using Story;
 using UnityEngine;
 
@@ -48,6 +49,8 @@ public static class StoryGoalHandler
     public static ItemGoal RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
     {
         var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
+        StoryGoalPatcher.RegisterItemGoal(goal);
+        return goal;
     }
 
     /// <summary>
