@@ -97,10 +97,10 @@ public static class StoryGoalHandler
     /// <para><b>Important:</b> Since these are stored in a dictionary, only <b>one</b> <see cref="OnGoalUnlock"/> object can be added for each specific goal key. Therefore, be careful when adding unlock data to base-game features.</para>
     /// </summary>
     /// <param name="goal">The goal that is associated with this action.</param>
-    /// <param name="blueprints"></param>
-    /// <param name="signals"></param>
-    /// <param name="items"></param>
-    /// <param name="achievements"></param>
+    /// <param name="blueprints">Array of blueprints that are unlocked alongside the given goal. The class has no constructor, so make sure you assign every field properly.</param>
+    /// <param name="signals">Array of signals that are unlocked alongside the given goal. The class has no constructor, so make sure you assign every field properly.</param>
+    /// <param name="items">Array of items that are unlocked alongside the given goal. The class has no constructor, so make sure you assign every field properly.</param>
+    /// <param name="achievements">Array of achievements that are unlocked alongside the given goal.</param>
     /// <returns>The registered <see cref="OnGoalUnlock"/> object.</returns>
     public static OnGoalUnlock RegisterOnGoalUnlockData(string goal, UnlockBlueprintData[] blueprints = null, UnlockSignalData[] signals = null, UnlockItemData[] items = null, GameAchievements.Id[] achievements = null)
     {
