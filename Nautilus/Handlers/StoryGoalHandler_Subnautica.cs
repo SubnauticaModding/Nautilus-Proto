@@ -49,6 +49,7 @@ public static class StoryGoalHandler
     public static void RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
     {
         var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
+        StoryGoalPatcher.ItemGoals.Add(goal);
 
         if (CustomStoryGoalManager.Instance)
         {
