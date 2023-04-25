@@ -1,8 +1,6 @@
 using System;
 using Story;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static HandReticle;
 
 namespace Nautilus.Handlers;
 
