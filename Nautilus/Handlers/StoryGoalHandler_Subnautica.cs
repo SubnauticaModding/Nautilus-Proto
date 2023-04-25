@@ -114,6 +114,11 @@ public static class StoryGoalHandler
         };
     }
 
+    /// <summary>
+    /// Registers a given <see cref="Action"/> to be performed when its associated goal is completed.
+    /// </summary>
+    /// <param name="goalName">The name of the goal that triggers the <paramref name="actionOnComplete"/>.</param>
+    /// <param name="actionOnComplete">The method that is called when the associated goal is completed.</param>
     public static void RegisterStoryGoalCustomEvent(string goalName, Action actionOnComplete)
     {
 
