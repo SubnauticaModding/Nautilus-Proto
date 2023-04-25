@@ -1,4 +1,5 @@
 using System;
+using Nautilus.MonoBehaviours;
 using Nautilus.Patchers;
 using Story;
 using UnityEngine;
@@ -45,12 +46,14 @@ public static class StoryGoalHandler
     /// <param name="goalType">If assigned a value other than 'Story', this will determine the automatic response to being triggered. Can add a PDA log, Radio message or Databank entry.</param>
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="techType">The TechType that causes this goal to trigger, when picked up, equipped or crafted through the Mobile Vehicle Bay.</param>
-    /// <returns>The registered <see cref="ItemGoal"/>.</returns>
-    public static ItemGoal RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
+    public static void RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
     {
         var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
-        StoryGoalPatcher.RegisterItemGoal(goal);
-        return goal;
+
+        if (CustomStoryGoalManager.Instance)
+        {
+            CustomStoryGoalManager.Instance.AddImmediately(goal);
+        }
     }
 
     /// <summary>
@@ -61,10 +64,15 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="biomeName">The biome that must be entered to trigger this goal.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay in the given biome.</param>
-    /// <returns>The registered <see cref="BiomeGoal"/>.</returns>
-    public static BiomeGoal RegisterBiomeGoal(string key, Story.GoalType goalType, float delay, string biomeName, float minStayDuration)
+    public static void RegisterBiomeGoal(string key, Story.GoalType goalType, float delay, string biomeName, float minStayDuration)
     {
         var goal = new BiomeGoal() { key = key, goalType = goalType, delay = delay, biome = biomeName, minStayDuration = minStayDuration };
+        StoryGoalPatcher.BiomeGoals.Add(goal);
+        
+        if (CustomStoryGoalManager.Instance)
+        {
+            CustomStoryGoalManager.Instance.AddImmediately(goal);
+        }
     }
 
     /// <summary>
@@ -76,10 +84,15 @@ public static class StoryGoalHandler
     /// <param name="position">The center of the sphere that must be occupied.</param>
     /// <param name="range">The radius of the sphere that must be occupied.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay for this goal to be completed.</param>
-    /// <returns>The registered <see cref="LocationGoal"/>.</returns>
-    public static LocationGoal RegisterLocationGoal(string key, Story.GoalType goalType, float delay, Vector3 position, float range, float minStayDuration)
+    public static void RegisterLocationGoal(string key, Story.GoalType goalType, float delay, Vector3 position, float range, float minStayDuration)
     {
         var goal = new LocationGoal() { key = key, goalType = goalType, delay = delay, position = position, range = range, minStayDuration = minStayDuration };
+        StoryGoalPatcher.LocationGoals.Add(goal);
+        
+        if (CustomStoryGoalManager.Instance)
+        {
+            CustomStoryGoalManager.Instance.AddImmediately(goal);
+        }
     }
 
     /// <summary>
@@ -90,9 +103,15 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="requiredGoals">The list of all goals that must be completed before this goal is marked as complete.</param>
     /// <returns>The registered <see cref="CompoundGoal"/>.</returns>
-    public static CompoundGoal RegisterCompoundGoal(string key, Story.GoalType goalType, float delay, params string[] requiredGoals)
+    public static void RegisterCompoundGoal(string key, Story.GoalType goalType, float delay, params string[] requiredGoals)
     {
         var goal = new CompoundGoal() { key = key, goalType = goalType, delay = delay, preconditions = requiredGoals };
+        StoryGoalPatcher.CompoundGoals.Add(goal);
+        
+        if (CustomStoryGoalManager.Instance)
+        {
+            CustomStoryGoalManager.Instance.AddImmediately(goal);
+        }
     }
 
     /// <summary>
@@ -105,26 +124,41 @@ public static class StoryGoalHandler
     /// <param name="items">Array of items that are unlocked alongside the given goal. The class has no constructor, so make sure you assign every field properly.</param>
     /// <param name="achievements">Array of achievements that are unlocked alongside the given goal.</param>
     /// <returns>The registered <see cref="OnGoalUnlock"/> object.</returns>
-    public static OnGoalUnlock RegisterOnGoalUnlockData(string goal, UnlockBlueprintData[] blueprints = null, UnlockSignalData[] signals = null, UnlockItemData[] items = null, GameAchievements.Id[] achievements = null)
+    public static void RegisterOnGoalUnlockData(string goal, UnlockBlueprintData[] blueprints = null, UnlockSignalData[] signals = null, UnlockItemData[] items = null, GameAchievements.Id[] achievements = null)
     {
-        var obj = new OnGoalUnlock()
+        var onGoalUnlock = new OnGoalUnlock()
         {
             goal = goal,
-            blueprints = blueprints ?? new UnlockBlueprintData[0],
-            signals = signals ?? new UnlockSignalData[0],
-            items = items ?? new UnlockItemData[0],
-            achievements = achievements ?? new GameAchievements.Id[0]
+            blueprints = blueprints ?? Array.Empty<UnlockBlueprintData>(),
+            signals = signals ?? Array.Empty<UnlockSignalData>(),
+            items = items ?? Array.Empty<UnlockItemData>(),
+            achievements = achievements ?? Array.Empty<GameAchievements.Id>()
         };
+        
+        StoryGoalPatcher.OnGoalUnlocks.Add(onGoalUnlock);
+        
+        if (CustomStoryGoalManager.Instance)
+        {
+            CustomStoryGoalManager.Instance.AddImmediately(onGoalUnlock);
+        }
     }
 
     /// <summary>
     /// Registers a given <see cref="Action"/> to be performed when its associated goal is completed.
     /// </summary>
-    /// <param name="goalName">The name of the goal that triggers the <paramref name="actionOnComplete"/>.</param>
-    /// <param name="actionOnComplete">The method that is called when the associated goal is completed.</param>
-    public static void RegisterStoryGoalCustomEvent(string goalName, Action actionOnComplete)
+    /// <param name="customEventCallback">The method that is called when the associated goal is completed. The name of the goal will be passed as a parameter.</param>
+    public static void RegisterStoryGoalCustomEvent(Action<string> customEventCallback)
     {
-
+        StoryGoalPatcher.StoryGoalCustomEvents += customEventCallback;
+    }
+    
+    /// <summary>
+    /// Unregisters a story goal custom event.
+    /// </summary>
+    /// <param name="customEventCallback">The method to unregister.</param>
+    public static void UnregisterStoryGoalCustomEvent(Action<string> customEventCallback)
+    {
+        StoryGoalPatcher.StoryGoalCustomEvents -= customEventCallback;
     }
 }
 #endif

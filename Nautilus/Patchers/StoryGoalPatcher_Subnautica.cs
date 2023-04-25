@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using HarmonyLib;
+using Nautilus.MonoBehaviours;
 using Story;
 using Nautilus.Utility;
 
@@ -9,37 +10,34 @@ namespace Nautilus.Patchers;
 #if SUBNAUTICA
 internal static class StoryGoalPatcher
 {
-    private static readonly List<ItemGoal> _itemGoals = new List<ItemGoal>();
-    private static readonly List<BiomeGoal> _biomeGoals = new List<BiomeGoal>();
-    private static readonly List<LocationGoal> _locationGoals = new List<LocationGoal>();
-    private static readonly List<CompoundGoal> _compoundGoals = new List<CompoundGoal>();
-    private static readonly List<OnGoalUnlock> _onGoalUnlocks = new List<OnGoalUnlock>();
-    private static readonly List<StoryGoalCustomEventData> _storyGoalCustomEvents = new List<StoryGoalCustomEventData>();
-
-    internal record StoryGoalCustomEventData(string goalName, Action completionAction);
-
-    internal static void RegisterItemGoal(ItemGoal goal)
-    {
-        if (ItemGoalTracker.main != null)
-        {
-            TrackItemGoal(ItemGoalTracker.main, goal);
-        }
-        _itemGoals.Add(goal);
-    }
+    internal static readonly List<ItemGoal> ItemGoals = new();
+    internal static readonly List<BiomeGoal> BiomeGoals = new();
+    internal static readonly List<LocationGoal> LocationGoals = new();
+    internal static readonly List<CompoundGoal> CompoundGoals = new();
+    internal static readonly List<OnGoalUnlock> OnGoalUnlocks = new();
+    internal static Action<string> StoryGoalCustomEvents;
 
     internal static void Patch(Harmony harmony)
     {
         PatchUtils.PatchClass(harmony);
-        SaveUtils.RegisterOnQuitEvent(() => _locationGoals.ForEach(x => x.timeRangeEntered = -1f));
+        SaveUtils.RegisterOnQuitEvent(() => LocationGoals.ForEach(x => x.timeRangeEntered = -1f));
+    }
+    
+    [PatchUtils.Prefix]
+    [HarmonyPatch(typeof(StoryGoalManager), nameof(StoryGoalManager.Awake))]
+    private static void ItemGoalTrackerStartPrefix(StoryGoalManager __instance)
+    {
+        __instance.gameObject.EnsureComponent<CustomStoryGoalManager>();
     }
 
     [PatchUtils.Postfix]
     [HarmonyPatch(typeof(ItemGoalTracker), nameof(ItemGoalTracker.Start))]
     private static void ItemGoalTrackerStartPostfix(ItemGoalTracker __instance)
     {
-        foreach (var itemGoal in _itemGoals)
+        foreach (var itemGoal in ItemGoals)
         {
-            TrackItemGoal(__instance, itemGoal);
+            var techType = itemGoal.techType;
+            __instance.goals.GetOrAddNew(techType).Add(itemGoal);
         }
     }
 
@@ -47,9 +45,9 @@ internal static class StoryGoalPatcher
     [HarmonyPatch(typeof(BiomeGoalTracker), nameof(BiomeGoalTracker.Start))]
     private static void BiomeGoalTrackerStartPostfix(BiomeGoalTracker __instance)
     {
-        foreach (var biomeGoal in _biomeGoals)
+        foreach (var biomeGoal in BiomeGoals)
         {
-            TrackBiomeGoal(__instance, biomeGoal);
+            __instance.goals.Add(biomeGoal);
         }
     }
 
@@ -57,9 +55,9 @@ internal static class StoryGoalPatcher
     [HarmonyPatch(typeof(LocationGoalTracker), nameof(LocationGoalTracker.Start))]
     private static void LocationGoalTrackerStartPostfix(LocationGoalTracker __instance)
     {
-        foreach (var locationGoal in _locationGoals)
+        foreach (var locationGoal in LocationGoals)
         {
-            TrackLocationGoal(__instance, locationGoal);
+            __instance.goals.Add(locationGoal);
         }
     }
 
@@ -68,70 +66,25 @@ internal static class StoryGoalPatcher
     [HarmonyPatch(typeof(CompoundGoalTracker), nameof(CompoundGoalTracker.Initialize))]
     private static void CompoundGoalTrackerInitializePrefix(CompoundGoalTracker __instance, HashSet<string> completedGoals)
     {
-        foreach (var compoundGoal in _compoundGoals)
+        foreach (var compoundGoal in CompoundGoals)
         {
-            TrackCompoundGoal(__instance, completedGoals, compoundGoal);
-        }
-    }
-
-    private static void TrackItemGoal(ItemGoalTracker tracker, ItemGoal goal)
-    {
-        var techType = goal.techType;
-        if (tracker.goals.TryGetValue(techType, out var list)) // see if a techtype is already tracking this goal (look for existing dictionary entries)
-        {
-            if (list == null) list = new List<ItemGoal>(); // ensure list is valid
-            foreach (var existingGoal in list) // check existing registered goals
+            if (!completedGoals.Contains(compoundGoal.key))
             {
-                if (existingGoal.key == goal.key)
-                    return; // you don't want to have 2 goals registered with the same key
-            }
-            list.Add(goal);
-        }
-        else
-        {
-            tracker.goals.Add(techType, new List<ItemGoal>() { goal }); // add new dictionary entry
-        }
-    }
-
-    private static void TrackBiomeGoal(BiomeGoalTracker tracker, BiomeGoal goal)
-    {
-        foreach (var g in tracker.goals)
-        {
-            if (goal.key == g.key)
-            {
-                InternalLogger.Warn($"Attempting to register multiple goals with the key '{goal.key}'!");
-                return;
+                __instance.goals.Add(compoundGoal);
             }
         }
-        tracker.goals.Add(goal);
     }
-
-    private static void TrackLocationGoal(LocationGoalTracker tracker, LocationGoal goal)
+    
+    [PatchUtils.Prefix]
+    [HarmonyPatch(typeof(OnGoalUnlockTracker), nameof(OnGoalUnlockTracker.Initialize))]
+    private static void OnGoalUnlockTrackerInitializePrefix(CompoundGoalTracker __instance, HashSet<string> completedGoals)
     {
-        foreach (var g in tracker.goals)
+        foreach (var compoundGoal in CompoundGoals)
         {
-            if (goal.key == g.key)
+            if (!completedGoals.Contains(compoundGoal.key))
             {
-                InternalLogger.Warn($"Attempting to register multiple goals with the key '{goal.key}'!");
-                return;
+                __instance.goals.Add(compoundGoal);
             }
-        }
-        tracker.goals.Add(goal);
-    }
-
-    private static void TrackCompoundGoal(CompoundGoalTracker tracker, HashSet<string> completedGoals, CompoundGoal goal)
-    {
-        foreach (var g in tracker.goals)
-        {
-            if (goal.key == g.key)
-            {
-                InternalLogger.Warn($"Attempting to register multiple goals with the key '{goal.key}'!");
-                return;
-            }
-        }
-        if (!completedGoals.Contains(goal.key))
-        {
-            tracker.goals.Add(goal);
         }
     }
 }
