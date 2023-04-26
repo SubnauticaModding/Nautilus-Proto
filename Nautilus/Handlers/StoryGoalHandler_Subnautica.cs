@@ -46,7 +46,7 @@ public static class StoryGoalHandler
     /// <param name="goalType">If assigned a value other than 'Story', this will determine the automatic response to being triggered. Can add a PDA log, Radio message or Databank entry.</param>
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="techType">The TechType that causes this goal to trigger, when picked up, equipped or crafted through the Mobile Vehicle Bay.</param>
-    public static void RegisterItemGoal(string key, Story.GoalType goalType, float delay, TechType techType)
+    public static void RegisterItemGoal(string key, Story.GoalType goalType, TechType techType, float delay = 0f)
     {
         var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
         StoryGoalPatcher.ItemGoals.Add(goal);
@@ -65,7 +65,7 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="biomeName">The biome that must be entered to trigger this goal.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay in the given biome.</param>
-    public static void RegisterBiomeGoal(string key, Story.GoalType goalType, float delay, string biomeName, float minStayDuration)
+    public static void RegisterBiomeGoal(string key, Story.GoalType goalType, string biomeName, float minStayDuration, float delay = 0f)
     {
         var goal = new BiomeGoal() { key = key, goalType = goalType, delay = delay, biome = biomeName, minStayDuration = minStayDuration };
         StoryGoalPatcher.BiomeGoals.Add(goal);
@@ -85,7 +85,7 @@ public static class StoryGoalHandler
     /// <param name="position">The center of the sphere that must be occupied.</param>
     /// <param name="range">The radius of the sphere that must be occupied.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay for this goal to be completed.</param>
-    public static void RegisterLocationGoal(string key, Story.GoalType goalType, float delay, Vector3 position, float range, float minStayDuration)
+    public static void RegisterLocationGoal(string key, Story.GoalType goalType, Vector3 position, float range, float minStayDuration, float delay = 0f)
     {
         var goal = new LocationGoal() { key = key, goalType = goalType, delay = delay, position = position, range = range, minStayDuration = minStayDuration };
         StoryGoalPatcher.LocationGoals.Add(goal);
