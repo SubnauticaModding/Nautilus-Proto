@@ -25,7 +25,7 @@ internal static class StoryGoalPatcher
     
     [PatchUtils.Prefix]
     [HarmonyPatch(typeof(StoryGoalManager), nameof(StoryGoalManager.Awake))]
-    private static void ItemGoalTrackerStartPrefix(StoryGoalManager __instance)
+    private static void StoryGoalManagerStartPrefix(StoryGoalManager __instance)
     {
         __instance.gameObject.EnsureComponent<CustomStoryGoalManager>();
     }

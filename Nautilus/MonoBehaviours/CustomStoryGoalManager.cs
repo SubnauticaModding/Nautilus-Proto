@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Nautilus.MonoBehaviours;
 
+// this class manages custom story goal events and the 
 internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
 {
     public static CustomStoryGoalManager Instance { get; private set; }
@@ -70,7 +71,8 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
         _locationGoalTracker = GetComponent<LocationGoalTracker>();
         _compoundGoalTracker = GetComponent<CompoundGoalTracker>();
         _onGoalUnlockTracker = GetComponent<OnGoalUnlockTracker>();
-        
+
+        // allows the IStoryGoalListener.NotifyGoalComplete method to be called
         if (StoryGoalManager.main)
         {
             StoryGoalManager.main.AddListener(this);
