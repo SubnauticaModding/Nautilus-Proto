@@ -149,7 +149,8 @@ public static class PDAHandler
     /// </summary>
     /// <param name="key">Key (internal ID) of this PDA entry, primarily used for the language system.</param>
     /// <param name="path"><para>Path to this entry in the databank.</para>
-    /// <para>To find examples of this string, open "Subnautica_Data\StreamingAssets\SNUnmanagedData\LanguageFiles\English.json" and search for "EncyPath".</para>
+    /// <para>To find examples of this string, open "Subnautica_Data\StreamingAssets\SNUnmanagedData\LanguageFiles\English.json" and search for "EncyPath".
+    /// Remember to omit the "EncyPath_" prefix from these language keys. An example of a proper value is: "Lifeforms/Fauna/Leviathans".</para>
     /// </param>
     /// <param name="title">Displayed title of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'Ency_{<paramref name="key"/>}'.</param>
     /// <param name="desc">Displayed description of the PDA entry in English. If set to null, you must implement your own translations. Language key is 'EncyDesc_{<paramref name="key"/>}'.</param>
