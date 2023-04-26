@@ -16,12 +16,6 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
     private LocationGoalTracker _locationGoalTracker;
     private CompoundGoalTracker _compoundGoalTracker;
     private OnGoalUnlockTracker _onGoalUnlockTracker;
-
-    private Queue<ItemGoal> _itemGoals = new();
-    private Queue<BiomeGoal> _biomeGoals = new();
-    private Queue<LocationGoal> _locationGoals = new();
-    private Queue<CompoundGoal> _compoundGoals = new();
-    private Queue<OnGoalUnlock> _onGoalUnlocks = new();
     
     public void AddImmediately<T>(T storyGoal) where T : StoryGoal
     {
@@ -32,16 +26,16 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
         switch (storyGoal)
         {
             case ItemGoal itemGoal:
-                _itemGoals.Enqueue(itemGoal);
+                TrackItemGoal(itemGoal);
                 break;
             case BiomeGoal biomeGoal:
-                _biomeGoals.Enqueue(biomeGoal);
+                TrackBiomeGoal(biomeGoal);
                 break;
             case LocationGoal locationGoal:
-                _locationGoals.Enqueue(locationGoal);
+                TrackLocationGoal(locationGoal);
                 break;
             case CompoundGoal compoundGoal:
-                _compoundGoals.Enqueue(compoundGoal);
+                TrackCompoundGoal(compoundGoal);
                 break;
         }
     }
@@ -55,8 +49,8 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
             onGoalUnlock.TriggerAchievements();
             return;
         }
-        
-        _onGoalUnlocks.Enqueue(onGoalUnlock);
+
+        TrackOnGoalUnlock(onGoalUnlock);
     }
 
     private void Awake()
@@ -71,84 +65,53 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
         _locationGoalTracker = GetComponent<LocationGoalTracker>();
         _compoundGoalTracker = GetComponent<CompoundGoalTracker>();
         _onGoalUnlockTracker = GetComponent<OnGoalUnlockTracker>();
+    }
+    
+    void IStoryGoalListener.NotifyGoalComplete(string key)
+    {
+        StoryGoalPatcher.StoryGoalCustomEvents?.Invoke(key);
+    }
 
-        // allows the IStoryGoalListener.NotifyGoalComplete method to be called
+    // allows the IStoryGoalListener.NotifyGoalComplete method to be called
+    private void OnEnable()
+    {
         if (StoryGoalManager.main)
         {
             StoryGoalManager.main.AddListener(this);
         }
     }
 
-    private void OnUpdate()
-    {
-        TrackItemGoals();
-
-        TrackBiomeGoals();
-
-        TrackLocationGoals();
-
-        TrackCompoundGoals();
-
-        TrackOnGoalUnlocks();
-    }
-
-    void IStoryGoalListener.NotifyGoalComplete(string key)
-    {
-        StoryGoalPatcher.StoryGoalCustomEvents?.Invoke(key);
-    }
-    
-    private void OnEnable()
-    {
-        ManagedUpdate.Subscribe(ManagedUpdate.Queue.Update, OnUpdate);
-    }
-
+    // removes the listener when the object is removed, to ensure there are no invalid listeners registered
     private void OnDisable()
     {
-        ManagedUpdate.Unsubscribe(ManagedUpdate.Queue.Update, OnUpdate);
+        if (StoryGoalManager.main)
+        {
+            StoryGoalManager.main.RemoveListener(this);
+        }
     }
     
-    private void TrackItemGoals()
+    private void TrackItemGoal(ItemGoal itemGoal)
     {
-        if (_itemGoals.Count <= 0)
-            return;
-        
-        var itemGoal = _itemGoals.Dequeue();
         _itemGoalTracker.goals.GetOrAddNew(itemGoal.techType).Add(itemGoal);
     }
     
-    private void TrackBiomeGoals()
+    private void TrackBiomeGoal(BiomeGoal biomeGoal)
     {
-        if (_biomeGoals.Count <= 0)
-            return;
-        
-        var biomeGoal = _biomeGoals.Dequeue();
         _biomeGoalTracker.goals.Add(biomeGoal);
     }
     
-    private void TrackLocationGoals()
+    private void TrackLocationGoal(LocationGoal locationGoal)
     {
-        if (_locationGoals.Count <= 0)
-            return;
-        
-        var locationGoal = _locationGoals.Dequeue();
         _locationGoalTracker.goals.Add(locationGoal);
     }
     
-    private void TrackCompoundGoals()
-    {
-        if (_compoundGoals.Count <= 0)
-            return;
-        
-        var compoundGoal = _compoundGoals.Dequeue();
+    private void TrackCompoundGoal(CompoundGoal compoundGoal)
+    {        
         _compoundGoalTracker.goals.Add(compoundGoal);
     }
     
-    private void TrackOnGoalUnlocks()
+    private void TrackOnGoalUnlock(OnGoalUnlock onGoalUnlock)
     {
-        if (_onGoalUnlocks.Count <= 0)
-            return;
-        
-        var onGoalUnlock = _onGoalUnlocks.Dequeue();
         _onGoalUnlockTracker.goalUnlocks[onGoalUnlock.goal] = onGoalUnlock;
     }
 }
