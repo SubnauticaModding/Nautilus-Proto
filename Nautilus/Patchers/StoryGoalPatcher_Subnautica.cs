@@ -75,15 +75,15 @@ internal static class StoryGoalPatcher
         }
     }
     
-    [PatchUtils.Prefix]
+    [PatchUtils.Postfix]
     [HarmonyPatch(typeof(OnGoalUnlockTracker), nameof(OnGoalUnlockTracker.Initialize))]
-    private static void OnGoalUnlockTrackerInitializePrefix(CompoundGoalTracker __instance, HashSet<string> completedGoals)
+    private static void OnGoalUnlockTrackerInitializePostfix(OnGoalUnlockTracker __instance, HashSet<string> completedGoals)
     {
-        foreach (var compoundGoal in CompoundGoals)
+        foreach (var onGoalUnlock in OnGoalUnlocks)
         {
-            if (!completedGoals.Contains(compoundGoal.key))
+            if (!completedGoals.Contains(onGoalUnlock.goal))
             {
-                __instance.goals.Add(compoundGoal);
+                __instance.goalUnlocks[onGoalUnlock.goal] = onGoalUnlock;
             }
         }
     }
