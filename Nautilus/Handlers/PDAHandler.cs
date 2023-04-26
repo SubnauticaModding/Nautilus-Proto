@@ -158,7 +158,7 @@ public static class PDAHandler
     /// <param name="popupImage">Small popup image in the notification. Can be null.</param>
     /// <param name="unlockSound">Sound on unlock. Typical values are <see cref="UnlockBasic"/> and <see cref="UnlockImportant"/>. If unassigned, will have a default value of <see cref="UnlockBasic"/>.</param>
     /// <param name="voiceLog">Audio player that will be displayed inside this PDA entry, typically used for voice logs. Can be null.</param>
-    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image, Sprite popupImage, FMODAsset unlockSound = null, FMODAsset voiceLog = null)
+    public static void AddEncyclopediaEntry(string key, string path, string title, string desc, Texture2D image = null, Sprite popupImage = null, FMODAsset unlockSound = null, FMODAsset voiceLog = null)
     {
         if (string.IsNullOrEmpty(path))
         {
