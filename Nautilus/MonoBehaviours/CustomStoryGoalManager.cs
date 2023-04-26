@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using Nautilus.Patchers;
 using Story;
 using UnityEngine;
 
 namespace Nautilus.MonoBehaviours;
 
-// this class manages custom story goal events and the 
 internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
 {
     public static CustomStoryGoalManager Instance { get; private set; }
     
+    internal static readonly Dictionary<string, List<Action>> StoryGoalCustomEvents = new();
+
     private ItemGoalTracker _itemGoalTracker;
     private BiomeGoalTracker _biomeGoalTracker;
     private LocationGoalTracker _locationGoalTracker;
@@ -56,20 +56,20 @@ internal class CustomStoryGoalManager : MonoBehaviour, IStoryGoalListener
     private void Awake()
     {
         Instance = this;
+        _itemGoalTracker = StoryGoalManager.main.itemGoalTracker;
+        _biomeGoalTracker = StoryGoalManager.main.biomeGoalTracker;
+        _locationGoalTracker = StoryGoalManager.main.locationGoalTracker;
+        _compoundGoalTracker = StoryGoalManager.main.compoundGoalTracker;
+        _onGoalUnlockTracker = StoryGoalManager.main.onGoalUnlockTracker;
     }
 
-    private void Start()
-    {
-        _itemGoalTracker = GetComponent<ItemGoalTracker>();
-        _biomeGoalTracker = GetComponent<BiomeGoalTracker>();
-        _locationGoalTracker = GetComponent<LocationGoalTracker>();
-        _compoundGoalTracker = GetComponent<CompoundGoalTracker>();
-        _onGoalUnlockTracker = GetComponent<OnGoalUnlockTracker>();
-    }
-    
     void IStoryGoalListener.NotifyGoalComplete(string key)
     {
-        StoryGoalPatcher.StoryGoalCustomEvents?.Invoke(key);
+        foreach (var customEvent in StoryGoalCustomEvents)
+        {
+            if (key == customEvent.Key)
+                customEvent.Value.ForEach(x => x?.Invoke());
+        }
     }
 
     // allows the IStoryGoalListener.NotifyGoalComplete method to be called

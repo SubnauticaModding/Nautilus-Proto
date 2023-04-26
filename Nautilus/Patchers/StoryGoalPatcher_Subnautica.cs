@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using HarmonyLib;
 using Nautilus.MonoBehaviours;
@@ -15,7 +14,6 @@ internal static class StoryGoalPatcher
     internal static readonly List<LocationGoal> LocationGoals = new();
     internal static readonly List<CompoundGoal> CompoundGoals = new();
     internal static readonly List<OnGoalUnlock> OnGoalUnlocks = new();
-    internal static Action<string> StoryGoalCustomEvents;
 
     internal static void Patch(Harmony harmony)
     {
@@ -23,9 +21,9 @@ internal static class StoryGoalPatcher
         SaveUtils.RegisterOnQuitEvent(() => LocationGoals.ForEach(x => x.timeRangeEntered = -1f));
     }
     
-    [PatchUtils.Prefix]
+    [PatchUtils.Postfix]
     [HarmonyPatch(typeof(StoryGoalManager), nameof(StoryGoalManager.Awake))]
-    private static void StoryGoalManagerStartPrefix(StoryGoalManager __instance)
+    private static void StoryGoalManagerAwakePostfix(StoryGoalManager __instance)
     {
         __instance.gameObject.EnsureComponent<CustomStoryGoalManager>();
     }
