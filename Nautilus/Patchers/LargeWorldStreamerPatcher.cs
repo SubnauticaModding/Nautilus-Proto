@@ -12,7 +12,6 @@ using UnityEngine;
 
 namespace Nautilus.Patchers;
 
-// TODO: Add immediate spawner spawning to completely remove dependency before world init
 internal class LargeWorldStreamerPatcher
 {
     internal static void Patch(Harmony harmony)
@@ -108,7 +107,7 @@ internal class LargeWorldStreamerPatcher
         }
     }
 
-    private static void CreateSpawner(SpawnInfo spawnInfo)
+    internal static void CreateSpawner(SpawnInfo spawnInfo)
     {
         string keyToCheck = spawnInfo.Type switch
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using BepInEx;
 using HarmonyLib;
 using Nautilus.Patchers;
@@ -56,5 +56,9 @@ public class Initializer : BaseUnityPlugin
         CustomSoundPatcher.Patch(_harmony);
         EatablePatcher.Patch(_harmony);
         MaterialUtils.Patch();
+        FontReferencesPatcher.Patch(_harmony);
+#if SUBNAUTICA
+        StoryGoalPatcher.Patch(_harmony); // TO-DO: Story goal handling for Below Zero
+#endif
     }
 }
