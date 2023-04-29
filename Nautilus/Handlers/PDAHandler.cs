@@ -1,4 +1,6 @@
 using BepInEx.Logging;
+using FMOD;
+using Nautilus.FMod.Interfaces;
 using Nautilus.Patchers;
 using Nautilus.Utility;
 using UnityEngine;
@@ -105,11 +107,11 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry.</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
-    /// <param name="sound">The sound that will be played once this entry is triggered or played through the PDA's Log tab.</param>
+    /// <param name="sound">The sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
     /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
     public static void AddLogEntry(string key, string languageKey, FMODAsset sound, Sprite icon = null)
     {
@@ -124,6 +126,56 @@ public static class PDAHandler
         
         if (uGUI.isMainLevel)
             PDALogPatcher.InitializePostfix();
+    }
+
+    /// <summary>
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// </summary>
+    /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
+    /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
+    /// <param name="sound">The sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
+    /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
+    public static void AddLogEntry(string key, string languageKey, Sound sound, Sprite icon = null)
+    {
+        CustomSoundHandler.RegisterCustomSound(key, sound, AudioUtils.BusPaths.PDAVoice);
+        AddLogEntry(key, languageKey, AudioUtils.GetFmodAsset(key), icon);
+    }
+
+    /// <summary>
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// </summary>
+    /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
+    /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
+    /// <param name="audioClip">The sound that will be played once this log entry is unlocked or played through the PDA's Log tab. This is automatically converted to an FMOD sound.</param>
+    /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
+    public static void AddLogEntry(string key, string languageKey, AudioClip audioClip, Sprite icon = null)
+    {
+        AddLogEntry(key, languageKey, CustomSoundHandler.RegisterCustomSound(key, audioClip, AudioUtils.BusPaths.PDAVoice), icon);
+    }
+
+    /// <summary>
+    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// </summary>
+    /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
+    /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
+    /// <param name="filePath">The file path on the disk to the sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
+    /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
+    public static void AddLogEntry(string key, string languageKey, string filePath, Sprite icon = null)
+    {
+        AddLogEntry(key, languageKey, CustomSoundHandler.RegisterCustomSound(key, filePath, AudioUtils.BusPaths.PDAVoice), icon);
+    }
+
+    /// <summary>
+    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// </summary>
+    /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
+    /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
+    /// <param name="fmodSoundInterface">The IFModSound interface that accessed when this log entry is played.</param>
+    /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
+    public static void AddLogEntry(string key, string languageKey, IFModSound fmodSoundInterface, Sprite icon = null)
+    {
+        CustomSoundHandler.RegisterCustomSound(key, fmodSoundInterface);
+        AddLogEntry(key, languageKey, AudioUtils.GetFmodAsset(key), icon);
     }
 
     /// <summary>
