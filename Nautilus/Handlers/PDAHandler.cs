@@ -158,11 +158,11 @@ public static class PDAHandler
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
-    /// <param name="filePath">The file path on the disk to the sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
+    /// <param name="soundFilePath">The file path on the disk to the sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
     /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
-    public static void AddLogEntry(string key, string languageKey, string filePath, Sprite icon = null)
+    public static void AddLogEntry(string key, string languageKey, string soundFilePath, Sprite icon = null)
     {
-        AddLogEntry(key, languageKey, CustomSoundHandler.RegisterCustomSound(key, filePath, AudioUtils.BusPaths.PDAVoice), icon);
+        AddLogEntry(key, languageKey, CustomSoundHandler.RegisterCustomSound(key, soundFilePath, AudioUtils.BusPaths.PDAVoice), icon);
     }
 
     /// <summary>
