@@ -105,13 +105,12 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom log entry.
+    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
     /// </summary>
-    /// <param name="key">The key to refer to this entry.</param>
-    /// <param name="languageKey">The subtitles language key for this entry.</param>
-    /// <param name="icon">The icon that will be used in the Log tab for this entry. if <c>null</c> It will use the default log entry icon.</param>
-    /// <param name="sound">The sound that will be played once this entry is triggered or played in the Log tab.<br/>
-    /// If <c>null</c> the Play button in the Log tab will disappear and a sound wont play when this entry is triggered.</param>
+    /// <param name="key">The key (unique identifier) for this entry.</param>
+    /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
+    /// <param name="sound">The sound that will be played once this entry is triggered or played through the PDA's Log tab.</param>
+    /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
     public static void AddLogEntry(string key, string languageKey, FMODAsset sound, Sprite icon = null)
     {
         PDALog.EntryData entry = new()
