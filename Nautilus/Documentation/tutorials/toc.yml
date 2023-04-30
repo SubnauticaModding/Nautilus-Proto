@@ -1,4 +1,4 @@
-﻿- name: Overview
+- name: Overview
   href: overview.md
   
 - name: Adding Content
@@ -7,6 +7,8 @@
       href: spawns.md
     - name: Custom Console Commands
       href: console-commands.md
+    - name: Story Goals
+      href: story-goals.md
     
 - name: Editing Content
   items:
