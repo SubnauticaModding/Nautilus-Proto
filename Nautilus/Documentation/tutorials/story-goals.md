@@ -130,29 +130,6 @@ StoryGoalHandler.RegisterOnGoalUnlockData("KelpForestEnjoyer", blueprints: new S
 });
 ```
 
-## Completing goals
-
-Story goals can be completed in various ways, some more useful than others:
-
-| Method | Notes |
-| --- | --- |
-| Automatically, through the tracker system (accessible through the `StoryGoalHandler`). | This is the easiest way to add story goals and is recommended for typical use cases. |
-| `StoryGoal.Trigger()` (instance) | This is the recommended method for triggering goals without a tracker. When called, schedules the goal for completion (based on the delay), then executes all associated actions. |
-| `StoryGoalManager.main.OnGoalComplete(string key)` | Returns false if the goal has already been completed. Otherwise, returns true and adds the goal instantly. Has no delay and does not apply the actions defined by the goal's GoalType. |
-| `StoryGoal.Execute(string key, GoalType goalType)` (static) | Instantly completes a goal by calling OnGoalComplete, without applying the delay. Properly applies the actions defined by the goal's GoalType. |
-
-> [!NOTE]
-> When not using a tracker, the most proper way to complete a StoryGoal is through calling the `StoryGoal.Trigger()` method on a given instance. This is the only way to ensure the delay is applied properly and all actions are executed.
-
-## Action on completion
-
-Within the `StoryGoalHandler` class, action on completion can be defined in a couple ways:
-
-| Method | Notes |
-| --- | --- |
-| [StoryGoalHandler.RegisterCustomEvent(string key, Action customEventCallback)](https://subnauticamodding.github.io/Nautilus/api/Nautilus.Handlers.StoryGoalHandler.html#Nautilus_Handlers_StoryGoalHandler_RegisterCustomEvent_System_String_System_Action_) | Allows code of any length to be run when the goal is completed. |
-| [StoryGoalHandler.RegisterOnGoalUnlockData(...)](https://subnauticamodding.github.io/Nautilus/api/Nautilus.Handlers.StoryGoalHandler.html#Nautilus_Handlers_StoryGoalHandler_RegisterOnGoalUnlockData_System_String_Story_UnlockBlueprintData___Story_UnlockSignalData___Story_UnlockItemData___GameAchievements_Id___) | Allows the user to define any blueprints, items or achievements that are gained on completion. |
-
 ## Saving progress
 
 Every story goal can only be completed once, so no custom saving logic is required.
