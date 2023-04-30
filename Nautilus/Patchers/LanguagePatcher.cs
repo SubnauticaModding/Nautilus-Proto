@@ -45,9 +45,13 @@ internal static class LanguagePatcher
 
     internal static void InsertCustomLines(ref Language __instance)
     {
-        // Check to avoid errors. If there is no custom lines, we skip this.
-        if (_customLines is null || _customLines.Count == 0)
-            return;
+        if (!_customLines.TryGetValue(FallbackLanguage, out var fallbackStrings) & !_customLines.TryGetValue(_currentLanguage, out var currentStrings))
+        {
+          return;
+        }
+
+        fallbackStrings ??= new();
+        currentStrings ??= new();
 
         var fallbackStrings = _customLines[FallbackLanguage];
         var currentStrings = _customLines[_currentLanguage];
