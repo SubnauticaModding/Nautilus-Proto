@@ -47,12 +47,12 @@ internal static class LanguagePatcher
     {
         if (!_customLines.TryGetValue(FallbackLanguage, out var fallbackStrings) & !_customLines.TryGetValue(_currentLanguage, out var currentStrings))
         {
-          return;
+            return;
         }
 
         fallbackStrings ??= new();
         currentStrings ??= new();
-        
+
         foreach (var fallbackString in fallbackStrings)
         {
             // Allow mixed-in English if the current language doesn't have a translation for a key. 
