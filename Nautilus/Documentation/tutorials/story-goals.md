@@ -2,9 +2,9 @@
 
 The progression of Subnautica is primarily based around the Story Goal system. This system is composed of several sub-systems that together handle hundreds of different goals, each with their own unique triggers and effects on completion.
 
-Nautilus provides a new handler for accessing this system, which was not available in SMLHelper. This guide covers the basics of how to use them, and how they may help.
+Nautilus provides a new handler for accessing this system, which was not available in SMLHelper. This guide covers the basics of how to use them, and how they may help you implement certain features into your mod.
 
-Below is an incomplete list of places in the game where story goals are used:
+### Vanilla use-cases
 - Alien data terminals
 - Data consoles in Alterra Wrecks
 - Most story events
@@ -12,18 +12,19 @@ Below is an incomplete list of places in the game where story goals are used:
 - The PDA log tab (any sort of voice lines that play during progression!)
   - The radio, which is an extension of the log system.
 
-Beyond custom events which provides unlimited possibilities, goals can also do the following on completion:
-- Add items to the player's inventory
-- Add PDA databank entries
-- Add pending radio messages.
-- Play voice lines through the PDA log system
-- Unlock achievements
-- Unlock blueprints
-- Unlock signal locations
+### Possible actions on completion
+- Adding items to the player's inventory
+- Adding PDA databank entries
+- Adding pending radio messages.
+- Playing voice lines through the PDA log system
+- Triggering custom events (this in particular means that a goal can do ANYTHING on completion!)
+- Unlocking achievements
+- Unlocking blueprints
+- Unlocking signal locations
 
 ## The StoryGoal class
 
-The `StoryGoal` object is the basis of all StoryGoals. Many sub-classes exist to assist in the unlocking process with their associated tracker classes:
+The `StoryGoal` object is the basis of all StoryGoals. Many sub-classes and trackers exist to automate the unlocing process:
 
 | Tracker type        | StoryGoal Type | Description                                                                                                                              |
 | ------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -32,7 +33,7 @@ The `StoryGoal` object is the basis of all StoryGoals. Many sub-classes exist to
 | LocationGoalTracker | LocationGoal   | Completes a goal when the player stays within range of a certain position for a specified period of time.                                |
 | CompoundGoalTracker | CompoundGoal   | Completes a goal when all required "precondition" goals have been completed.                                                             |
 
-However, beyond the tracking and scheduling there are only two essential properties of Story Goal events: their `key` and `goalType`. Due to this fact, goals can be arbitrarily executed with the static `StoryGoal.Execute(string, GoalType)` method, and all actions on completion will still be performed.
+However, beyond the tracking and scheduling there are only two essential properties of Story Goal events: their `key` and `goalType`. Due to this fact, goals can be arbitrarily executed with methods such as `StoryGoal.Execute(string, GoalType)` and `StoryGoalManager.main.IsGoalComplete(string key)` (without a reference to the goal object), and all actions on completion will still be performed.
 
 Every Story Goal has its own Goal Type which determines the automatic action on completion:
 
@@ -45,10 +46,12 @@ Every Story Goal has its own Goal Type which determines the automatic action on 
 
 ## StoryGoalHandler
 
-This is the main class for interacting with the game's Story Goal system.
-
 > [!WARNING]
 > As of now, the StoryGoalHandler system is only designed to work for the first Subnautica game. Remember, you can [always contribute](https://github.com/SubnauticaModding/Nautilus/blob/master/Nautilus/Handlers/StoryGoalHandler_Subnautica.cs).
+
+This is the main class for interacting with the game's Story Goal system. It allows you to add goals to specific trackers and gives you full control over their actions on completion.
+
+A more comprehensive overview of the class can be viewed [here](https://subnauticamodding.github.io/Nautilus/api/Nautilus.Handlers.StoryGoalHandler.html).
 
 ## Creating goals
 
