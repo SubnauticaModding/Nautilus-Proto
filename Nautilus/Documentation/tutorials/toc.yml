@@ -23,6 +23,8 @@
   items:
     - name: Localization
       href: localization.md
+    - name: In-Game Options
+      href: options.md
   
     
   
