@@ -46,7 +46,7 @@ public static class StoryGoalHandler
     /// <param name="goalType">If assigned a value other than 'Story', this will determine the automatic response to being triggered. Can add a PDA log, Radio message or Databank entry.</param>
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="techType">The TechType that causes this goal to trigger, when picked up, equipped or crafted through the Mobile Vehicle Bay.</param>
-    /// <returns>The registered <see cref="ItemGoal"/>. Call the <see cref="StoryGoal.Trigger"/> method to trigger this goal manually.</returns>
+    /// <returns>The registered <see cref="ItemGoal"/>.</returns>
     public static ItemGoal RegisterItemGoal(string key, Story.GoalType goalType, TechType techType, float delay = 0f)
     {
         var goal = new ItemGoal() { key = key, goalType = goalType, delay = delay, techType = techType };
@@ -68,7 +68,7 @@ public static class StoryGoalHandler
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="biomeName">The biome that must be entered to trigger this goal.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay in the given biome.</param>
-    /// <returns>The registered <see cref="BiomeGoal"/>. Call the <see cref="StoryGoal.Trigger"/> method to trigger this goal manually.</returns>
+    /// <returns>The registered <see cref="BiomeGoal"/>.</returns>
     public static BiomeGoal RegisterBiomeGoal(string key, Story.GoalType goalType, string biomeName, float minStayDuration, float delay = 0f)
     {
         var goal = new BiomeGoal() { key = key, goalType = goalType, delay = delay, biome = biomeName, minStayDuration = minStayDuration };
@@ -91,7 +91,7 @@ public static class StoryGoalHandler
     /// <param name="position">The center of the sphere that must be occupied.</param>
     /// <param name="range">The radius of the sphere that must be occupied.</param>
     /// <param name="minStayDuration">The minimum amount of time the player must stay for this goal to be completed.</param>
-    /// <returns>The registered <see cref="LocationGoal"/>. Call the <see cref="StoryGoal.Trigger"/> method to trigger this goal manually.</returns>
+    /// <returns>The registered <see cref="LocationGoal"/>.</returns>
     public static LocationGoal RegisterLocationGoal(string key, Story.GoalType goalType, Vector3 position, float range, float minStayDuration, float delay = 0f)
     {
         var goal = new LocationGoal() { key = key, goalType = goalType, delay = delay, position = position, range = range, minStayDuration = minStayDuration };
@@ -112,7 +112,7 @@ public static class StoryGoalHandler
     /// <param name="goalType">If assigned a value other than 'Story', this will determine the automatic response to being triggered. Can add a PDA log, Radio message or Databank entry.</param>
     /// <param name="delay">StoryGoal listeners will not be notified until this many seconds after the goal is completed.</param>
     /// <param name="requiredGoals">The list of all goals that must be completed before this goal is marked as complete.</param>
-    /// <returns>The registered <see cref="CompoundGoal"/>. Call the <see cref="StoryGoal.Trigger"/> method to trigger this goal manually.</returns>
+    /// <returns>The registered <see cref="CompoundGoal"/>.</returns>
     public static CompoundGoal RegisterCompoundGoal(string key, Story.GoalType goalType, float delay, params string[] requiredGoals)
     {
         var goal = new CompoundGoal() { key = key, goalType = goalType, delay = delay, preconditions = requiredGoals };
