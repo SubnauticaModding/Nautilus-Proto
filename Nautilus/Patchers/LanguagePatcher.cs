@@ -52,10 +52,7 @@ internal static class LanguagePatcher
 
         fallbackStrings ??= new();
         currentStrings ??= new();
-
-        var fallbackStrings = _customLines[FallbackLanguage];
-        var currentStrings = _customLines[_currentLanguage];
-
+        
         foreach (var fallbackString in fallbackStrings)
         {
             // Allow mixed-in English if the current language doesn't have a translation for a key. 
