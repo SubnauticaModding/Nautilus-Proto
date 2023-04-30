@@ -124,4 +124,4 @@ The `StoryGoalManager.main.IsGoalComplete(string key)` method can be used to che
 
 ## Summary
 
-The Story Goal system is a powerful tool for creating story-driven progression in Subnautica mods. By using the methods within the `StoryGoalHandler` class, you can easily add goals and customize their effects upon completion.
+The Story Goal system is a powerful tool for creating story and exploration-driven progression in Subnautica mods. By using the methods within the `StoryGoalHandler` class, you can easily add goals and customize their effects upon completion.
