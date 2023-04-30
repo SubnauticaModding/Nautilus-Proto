@@ -1,8 +1,5 @@
 # Using the Story Goal system
 
-> [!WARNING]
-> Due to the nature of the system, this page will contain unmarked spoilers!
-
 The progression of Subnautica is primarily based around the Story Goal system. This system is composed of several sub-systems that together handle hundreds of different goals, each with their own unique triggers and effects on completion.
 
 Nautilus provides a new handler for accessing this system, which was not available in SMLHelper. This guide covers the basics of how to use them, and how they may help.
