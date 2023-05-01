@@ -138,8 +138,21 @@ public static class PDAHandler
     /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
     public static void AddLogEntry(string key, string languageKey, Sound sound, Sprite icon = null)
     {
+        /*
+         * If there's an existing custom sound with the same key, we release the previous sound's handle.
+         * This is so we do not leave any unused objects in memory.
+         */
+        if (CustomSoundHandler.TryGetCustomSound(key, out var prevSound))
+        {
+            if (prevSound.hasHandle() && prevSound.handle != sound.handle)
+            {
+                prevSound.release();
+            }
+        }
+
         CustomSoundHandler.RegisterCustomSound(key, sound, AudioUtils.BusPaths.PDAVoice);
-        AddLogEntry(key, languageKey, AudioUtils.GetFmodAsset(key), icon);
+
+        AddLogEntry(key, languageKey, AudioUtils.GetFmodAsset(key, key), icon);
     }
 
     /// <summary>
