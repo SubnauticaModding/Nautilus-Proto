@@ -107,7 +107,7 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system (see <see cref="StoryGoalHandler"/>) or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry.</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
@@ -129,7 +129,7 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system (see <see cref="StoryGoalHandler"/>) or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
@@ -142,7 +142,7 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Should be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system (see <see cref="StoryGoalHandler"/>) or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
@@ -154,7 +154,7 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system (see <see cref="StoryGoalHandler"/>) or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
@@ -166,7 +166,7 @@ public static class PDAHandler
     }
 
     /// <summary>
-    /// Adds a custom PDA log entry message. Can be played by the Story Goal system or through <see cref="PDALog.Add"/>.
+    /// Adds a custom PDA log entry message. Should be played by the Story Goal system (see <see cref="StoryGoalHandler"/>) or through <see cref="PDALog.Add"/>.
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
