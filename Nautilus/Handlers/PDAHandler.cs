@@ -170,11 +170,11 @@ public static class PDAHandler
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry. Also used to create the sound asset, so make sure this string is <i>truly</i> unique!</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
-    /// <param name="fmodSoundInterface">The IFModSound interface that accessed when this log entry is played.</param>
+    /// <param name="fmodSound">The <see cref="IFModSound"/> instance that is used to create a custom sound. IFModSound instances have custom logic for playing sounds. that is accessed when this log entry is played.</param>
     /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
-    public static void AddLogEntry(string key, string languageKey, IFModSound fmodSoundInterface, Sprite icon = null)
+    public static void AddLogEntry(string key, string languageKey, IFModSound fmodSound, Sprite icon = null)
     {
-        CustomSoundHandler.RegisterCustomSound(key, fmodSoundInterface);
+        CustomSoundHandler.RegisterCustomSound(key, fmodSound);
         AddLogEntry(key, languageKey, AudioUtils.GetFmodAsset(key), icon);
     }
 
