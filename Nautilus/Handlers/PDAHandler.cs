@@ -111,7 +111,8 @@ public static class PDAHandler
     /// </summary>
     /// <param name="key">The key (unique identifier) for this entry.</param>
     /// <param name="languageKey">The subtitles language key for this entry. Also see: <see cref="LanguageHandler.SetLanguageLine(string, string, string)"/>.</param>
-    /// <param name="sound">The sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</param>
+    /// <param name="sound"><para>The sound that will be played once this log entry is unlocked or played through the PDA's Log tab.</para>
+    /// <para>Note that the SoundQueue system (which plays the PDA sounds) accesses the FMODAsset's "id" field rather than the path, so make sure it is assigned properly.</para></param>
     /// <param name="icon">The icon that will be used in the Log tab for this entry. if unassigned, it will use the default log entry icon.</param>
     public static void AddLogEntry(string key, string languageKey, FMODAsset sound, Sprite icon = null)
     {
