@@ -13,4 +13,4 @@ We thank all of the following individuals for their contributions to Nautilus. T
 
 If you notice a problem with this file, feel free to report an issue in the repository.
 
-If you would like to update this file manually, clone the repository, run AuthorsTableGenerator\AuthorTableGenerator.exe and send a Pull Request.
+If you would like to update this file manually, clone the repository, run AuthorTableGenerator.exe in AuthorsTableGenerator folder and send a Pull Request.
