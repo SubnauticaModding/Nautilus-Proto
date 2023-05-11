@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Nautilus.Utility;
 
@@ -110,7 +110,7 @@ public static class PrefabUtils
 
         var constructable = prefab.EnsureComponent<Constructable>();
         constructable.controlModelState = true;
-        // TODO: Add ghost material for BZ
+        // TODO: Add ghost material for Below Zero
 #if SUBNAUTICA
         constructable.ghostMaterial = MaterialUtils.GhostMaterial;
 #endif
