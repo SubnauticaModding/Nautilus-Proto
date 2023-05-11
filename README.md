@@ -2,7 +2,7 @@
 
 ![banner](https://user-images.githubusercontent.com/71298690/233505405-e89fbc70-31c9-45a2-bb31-64e1f498d4a7.png)
 
-![NuGet](https://img.shields.io/nuget/vpre/Subnautica.Nautilus)
+[![NuGet](https://img.shields.io/nuget/vpre/Subnautica.Nautilus)](https://www.nuget.org/packages/Subnautica.Nautilus)
 [![Discord](https://img.shields.io/discord/324207629784186882?logo=discord&logoColor=white)](https://discord.gg/UpWuWwq)
 [![GitHub contributors](https://img.shields.io/github/contributors/SubnauticaModding/Nautilus?style=flat-square)](https://github.com/SubnauticaModding/Nautilus/graphs/contributors)
 [![License](https://img.shields.io/github/license/SubnauticaModding/Nautilus?style=flat-square)](https://github.com/SubnauticaModding/Nautilus/blob/master/LICENSE.md)
@@ -11,6 +11,7 @@
 - [🌐 About](#about)
 - [⬇️ Installation](#installation)
 - [📚 Resources / links](#links)
+- [❤️ Contributors](#contributors)
 - [🤝 Contributing](#contributing)
 
 ## About
@@ -44,6 +45,14 @@ If you have any trouble installing the mod, please join our [Discord server](htt
   * [Updating to Nautilus from SMLHelper](https://subnauticamodding.github.io/Nautilus/guides/sml2-to-nautilus.html)
 * Other links:
   * [Subnautica Modding Discord Server](https://discord.gg/UpWuWwq)
+
+## Contributors
+To everyone who has spent the time to contribute to Nautilus and/or SMLHelper, we cannot thank you enough!
+* [Elaborate list of all current and previous contributors to Nautilus](https://github.com/SubnauticaModding/Nautilus/blob/master/AUTHORS.md)
+* [SMLHelper repository (contains any lost contributor info)](https://github.com/SubnauticaModding/SMLHelper)
+* [Raw, complete, and up-to-date contributor data from the GitHub API](https://api.github.com/repos/SubnauticaModding/Nautilus/contributors)
+
+###### An unusual issue when mirroring the repository has caused many SMLHelper contributors to disappear from the widget on Nautilus's GitHub page, even if their contributions were correctly carried over to Nautilus.
 
 ## Contributing
 Please read through our [Contribution Guidelines](CONTRIBUTING.md) before submitting a pull request. We welcome all kinds of contributions.  
