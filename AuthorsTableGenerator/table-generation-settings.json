@@ -1,0 +1,11 @@
+{
+    "columns": 3,
+    "pathToRepositoryRoot" : "..",
+    "repositoryOrganizationOrOwner": "SubnauticaModding",
+    "repositoryName": "Nautilus",
+    "fileName": "AUTHORS.md",
+    "title": "Nautilus Contributors",
+    "description": "Thank you to all of our contributors!",
+    "footer": "If you notice a problem with this file, feel free to report an issue in the repository.",
+    "showCommits": true
+}
