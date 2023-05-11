@@ -47,10 +47,9 @@ If you have any trouble installing the mod, please join our [Discord server](htt
   * [Subnautica Modding Discord Server](https://discord.gg/UpWuWwq)
 
 ## Contributors
-We have created an [elaborate list of contributors](https://github.com/SubnauticaModding/Nautilus/blob/authors-list/AUTHORS.md) to properly recognize all current and previous contributors to Nautilus.
-
-An unusual issue when mirroring the repository has caused many SMLHelper contributors to disappear from the widget on Nautilus's GitHub page, even if their contributions were correctly carried over to Nautilus.
-Their names can be found on the [SMLHelper repository page](https://github.com/SubnauticaModding/SMLHelper) and are also listed on this [GitHub API page](https://api.github.com/repos/SubnauticaModding/Nautilus/contributors).
+* [Elaborate list of all current and previous contributors to Nautilus](https://github.com/SubnauticaModding/Nautilus/blob/authors-list/AUTHORS.md)
+* An unusual issue when mirroring the repository has caused many SMLHelper contributors to disappear from the widget on Nautilus's GitHub page, even if their contributions were correctly carried over to Nautilus.
+  * Their names can be found on the [SMLHelper repository page](https://github.com/SubnauticaModding/SMLHelper) and are also listed on this [GitHub API page](https://api.github.com/repos/SubnauticaModding/Nautilus/contributors).
 
 ## Contributing
 Please read through our [Contribution Guidelines](CONTRIBUTING.md) before submitting a pull request. We welcome all kinds of contributions.  
