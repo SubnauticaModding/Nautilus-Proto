@@ -1,5 +1,5 @@
 # Nautilus Contributors
-Nautilus was created by the following contributors of [SMLHelper](https://github.com/SubnauticaModding/SMLHelper) and Nautilus.
+We thank all of the following individuals for their contributions to Nautilus (which includes everyone who worked on [SMLHelper](https://github.com/SubnauticaModding/SMLHelper)). Nautilus would not be the same without them!
 
 | Name | Picture | Commits | Name | Picture | Commits | Name | Picture | Commits |
 | ---- | --------------- | ------ | ---- | --------------- | ------ | ---- | --------------- | ------ |
