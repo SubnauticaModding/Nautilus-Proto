@@ -47,7 +47,7 @@ If you have any trouble installing the mod, please join our [Discord server](htt
   * [Subnautica Modding Discord Server](https://discord.gg/UpWuWwq)
 
 ## Contributors
-We thank everyone who has spent the time to contribute to Nautilus and/or SMLHelper.
+To everyone who has spent the time to contribute to Nautilus and/or SMLHelper, we cannot thank you enough!
 * [Elaborate list of all current and previous contributors to Nautilus](https://github.com/SubnauticaModding/Nautilus/blob/authors-list/AUTHORS.md)
 * [SMLHelper repository (contains any lost contributor info)](https://github.com/SubnauticaModding/SMLHelper)
 * [Raw, complete, and up-to-date contributor data from the GitHub API](https://api.github.com/repos/SubnauticaModding/Nautilus/contributors)
