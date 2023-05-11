@@ -1,5 +1,5 @@
 # Nautilus Contributors
-Thank you to all of our contributors!
+Nautilus was created by the following contributors of [SMLHelper](https://github.com/SubnauticaModding/SMLHelper) and Nautilus.
 
 | Name | Picture | Commits | Name | Picture | Commits | Name | Picture | Commits |
 | ---- | --------------- | ------ | ---- | --------------- | ------ | ---- | --------------- | ------ |
@@ -12,3 +12,5 @@ Thank you to all of our contributors!
 | [EldritchCarMaker](https://github.com/EldritchCarMaker) | <img src="https://avatars.githubusercontent.com/u/97289845?v=4" width="50"> | 1 | [RamuneNeptune](https://github.com/RamuneNeptune) | <img src="https://avatars.githubusercontent.com/u/94365980?v=4" width="50"> | 1 | [SamuramongeDev](https://github.com/SamuramongeDev) | <img src="https://avatars.githubusercontent.com/u/76671705?v=4" width="50"> | 1 |
 
 If you notice a problem with this file, feel free to report an issue in the repository.
+
+If you would like to update this file manually, clone the repository, run AuthorsTableGenerator\AuthorTableGenerator.exe and send a Pull Request.
