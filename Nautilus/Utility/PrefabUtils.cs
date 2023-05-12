@@ -140,7 +140,7 @@ public static class PrefabUtils
     /// <param name="scaleFactor">The relative scale of the model. Generally is 1x for most items.</param>
     /// <param name="eulerOffset">Rotational offset.</param>
     /// <returns>The added component.</returns>
-    public static VFXFabricating AddVFXFabricating(GameObject prefabRoot, string pathToModel, float minY, float maxY, Vector3 posOffset, float scaleFactor = 1f, Vector3 eulerOffset = default)
+    public static VFXFabricating AddVFXFabricating(GameObject prefabRoot, string pathToModel, float minY, float maxY, Vector3 posOffset = default, float scaleFactor = 1f, Vector3 eulerOffset = default)
     {
         GameObject modelObject = prefabRoot;
         if (!string.IsNullOrEmpty(pathToModel))
