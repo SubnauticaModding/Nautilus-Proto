@@ -129,7 +129,7 @@ public static class PrefabUtils
     /// Adds the <see cref="VFXFabricating"/> component onto the child found by <paramref name="pathToModel"/>. 
     /// </summary>
     /// <param name="prefabRoot">The prefab object that this is applied to.</param>
-    /// <param name="pathToModel">The path to the crafting model Transform, relative to the prefab's root Transform. For example, the Repair Tool's would be `welder_scaled/welder`. Leave null to use the prefab object instead.</param>
+    /// <param name="pathToModel">Leave as null or empty to point to the prefab root. Otherwise this is the path to the crafting model Transform, relative to the prefab's root Transform. For example, the Repair Tool's would be `welder_scaled/welder`.</param>
     /// <param name="minY">
     /// <para>The relative y position of where the ghost effect begins, in global coordinates relative to the model's center, taking the <paramref name="posOffset"/> into account.</para>
     /// <para>Typically a negative value because the bottom of an object is below its center. You may need to adjust this at runtime with Subnautica Runtime Editor to get desired results.</para></param>
