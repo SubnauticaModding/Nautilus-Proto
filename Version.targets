@@ -3,5 +3,6 @@
     <PropertyGroup>
         <!-- The assembly uses this version number. !-->
         <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix>pre.7</VersionSuffix>
     </PropertyGroup>
 </Project>
