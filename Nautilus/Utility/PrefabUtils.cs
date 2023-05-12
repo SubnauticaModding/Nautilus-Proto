@@ -124,4 +124,31 @@ public static class PrefabUtils
 
         return constructable;
     }
+
+    /// <summary>
+    /// Adds the <see cref="VFXFabricating"/> component onto the child found by <paramref name="pathToModel"/>. 
+    /// </summary>
+    /// <param name="prefabRoot">The prefab object that this is applied to.</param>
+    /// <param name="pathToModel">The path of the child, relative to the prefab's root. For example, the Repair Tool's would be `welder_scaled/welder`. Leave null to use the prefab object instead.</param>
+    /// <param name="minY">The relative y position of where the ghost effect begins, in global coordinates relative to the model's center, taking the <paramref name="posOffset"/> into account.</param>
+    /// <param name="maxY">The relative y position of where the ghost effect ends, in global coordinates relative to the model's center, taking the <paramref name="posOffset"/> into account.</param>
+    /// <param name="scaleFactor">The relative scale of the model.</param>
+    /// <param name="posOffset">The offset of the model when being crafted.</param>
+    /// <param name="eulerOffset">Rotational offset.</param>
+    /// <returns>The added component.</returns>
+    public static VFXFabricating AddVFXFabricating(GameObject prefabRoot, string pathToModel, float minY, float maxY, Vector3 posOffset, float scaleFactor = 1f, Vector3 eulerOffset = default)
+    {
+        GameObject modelObject = prefabRoot;
+        if (!string.IsNullOrEmpty(pathToModel))
+        {
+            modelObject = prefabRoot.transform.Find(pathToModel).gameObject;
+        }
+        VFXFabricating vfxFabricating = modelObject.AddComponent<VFXFabricating>();
+        vfxFabricating.localMinY = minY;
+        vfxFabricating.localMaxY = maxY;
+        vfxFabricating.posOffset = posOffset;
+        vfxFabricating.scaleFactor = scaleFactor;
+        vfxFabricating.eulerOffset = eulerOffset;
+        return vfxFabricating;
+    }
 }
