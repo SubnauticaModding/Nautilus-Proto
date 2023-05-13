@@ -19,7 +19,10 @@
 
 
 <!---- To get the links for section names that have emojis: go to 'Preview' > hover over the section text > hit the link icon that shows, and use that url ---->
-<!---------TABLE OF CONTENTS START--------->  
+<!---------TABLE OF CONTENTS START---------> 
+
+## This prototype has been archived, please visit [this](https://github.com/SubnauticaModding/Nautilus) repository instead.
+
 ## Contents
 - [🌐 About](#-about)
 - [⬇️ Installation](#%EF%B8%8F-installation)
